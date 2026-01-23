@@ -3,6 +3,7 @@ const { offre } = Astro.props;
 ---
 
 <div class="card">
+    <img src={offre.img.src} alt={offre.nomMaison} class="card-image" />
     <h3>{offre.nomMaison}</h3>
     <p class="adresse">{offre.adresse}</p>
     <div class="details">
@@ -18,13 +19,36 @@ const { offre } = Astro.props;
     .card {
         border: 1px solid #ddd;
         border-radius: 8px;
-        padding: 1.5rem;
+        overflow: hidden;
         margin-bottom: 1.5rem;
         background: white;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition:
             transform 0.2s ease,
             box-shadow 0.2s ease;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .card > h3,
+    .card > p,
+    .card > .details,
+    .card > .favori {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .card > h3 {
+        margin-top: 1.5rem;
+    }
+
+    .card > .favori {
+        margin-bottom: 1.5rem;
     }
 
     .card:hover {

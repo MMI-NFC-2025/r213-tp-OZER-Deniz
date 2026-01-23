@@ -1,0 +1,149 @@
+---
+const { offre } = Astro.props;
+---
+
+<div class="card" data-favori={offre.favori.toString()}>
+    <img src={offre.img.src} alt={offre.nomMaison} class="card-image" />
+    <div class="card-header">
+        <h3>{offre.nomMaison}</h3>
+        <button class="favori-btn" aria-label="Ajouter/Retirer des favoris">
+            <svg
+                class="star-icon"
+                viewBox="0 0 24 24"
+                fill={offre.favori ? "#FFD700" : "none"}
+                stroke="currentColor"
+            >
+                <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                ></path>
+            </svg>
+        </button>
+    </div>
+    <p class="adresse">{offre.adresse}</p>
+    <div class="details">
+        <p><strong>Prix:</strong> ${offre.prix}/mois</p>
+        <p><strong>Surface:</strong> {offre.surface} m²</p>
+        <p><strong>Chambres:</strong> {offre.nbChambres}</p>
+        <p><strong>Salles de bain:</strong> {offre.nbSdb}</p>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            background-color 0.3s ease;
+    }
+
+    .card[data-favori="true"] {
+        background-color: #fffbea;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .card > p,
+    .card > .details {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .card > .details {
+        margin-bottom: 1.5rem;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2c3e50;
+        margin: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+    }
+
+    .favori-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .star-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: #ffd700;
+        stroke-width: 1.5;
+        transition:
+            fill 0.3s ease,
+            transform 0.2s ease;
+    }
+
+    .favori-btn:hover .star-icon {
+        transform: scale(1.3);
+    }
+
+    .adresse {
+        color: #666;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .details p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".favori-btn");
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", function () {
+                const card = this.closest(".card");
+                const isFavori = card.dataset.favori === "true";
+                card.dataset.favori = (!isFavori).toString();
+
+                const svg = this.querySelector(".star-icon");
+                if (!isFavori) {
+                    svg.setAttribute("fill", "#FFD700");
+                } else {
+                    svg.setAttribute("fill", "none");
+                }
+            });
+        });
+    });
+</script>
