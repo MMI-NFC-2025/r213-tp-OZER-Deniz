@@ -1,3 +1,3 @@
-- Nom:
-- Prénom:
-- URL vercel: 
+- Nom: Deniz
+- Prénom: Ozer
+- URL Netlify: 
