@@ -3,16 +3,15 @@ const { offre } = Astro.props;
 ---
 
 <div class="card">
-    <img src={offre.img.src} alt={offre.nomMaison} class="card-image" />
-    <h3>{offre.nomMaison}</h3>
-    <p class="adresse">{offre.adresse}</p>
+    <h3>{offre.Nom}</h3>
+    <p class="adresse">{offre.Adresse}</p>
     <div class="details">
-        <p><strong>Prix:</strong> ${offre.prix}/mois</p>
-        <p><strong>Surface:</strong> {offre.surface} m²</p>
-        <p><strong>Chambres:</strong> {offre.nbChambres}</p>
-        <p><strong>Salles de bain:</strong> {offre.nbSdb}</p>
+        <p><strong>Prix:</strong> ${offre.Prix}/mois</p>
+        <p><strong>Surface:</strong> {offre.Superficie} m²</p>
+        <p><strong>Chambres:</strong> {offre.Nombre_de_chambres}</p>
+        <p><strong>Salles de bain:</strong> {offre.Nombre_sdb}</p>
     </div>
-    {offre.favori && <span class="favori">⭐ Favori</span>}
+    {offre.Favori && <span class="favori">⭐ Favori</span>}
 </div>
 
 <style>
