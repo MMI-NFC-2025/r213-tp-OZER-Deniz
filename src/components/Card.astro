@@ -1,17 +1,11 @@
 ---
+import PbImage from './PbImage.astro';
 const { offre } = Astro.props;
 ---
 
 <div class="card">
+    {offre.Images?.[0] && <PbImage record={offre} recordImage={offre.Images[0]} />}
     <h3>{offre.Nom}</h3>
-    <p class="adresse">{offre.Adresse}</p>
-    <div class="details">
-        <p><strong>Prix:</strong> ${offre.Prix}/mois</p>
-        <p><strong>Surface:</strong> {offre.Superficie} m²</p>
-        <p><strong>Chambres:</strong> {offre.Nombre_de_chambres}</p>
-        <p><strong>Salles de bain:</strong> {offre.Nombre_sdb}</p>
-    </div>
-    {offre.Favori && <span class="favori">⭐ Favori</span>}
 </div>
 
 <style>
@@ -27,65 +21,23 @@ const { offre } = Astro.props;
             box-shadow 0.2s ease;
     }
 
-    .card-image {
+    .card :global(img) {
         width: 100%;
-        height: 250px;
+        height: 500px;
         object-fit: cover;
         display: block;
     }
 
-    .card > h3,
-    .card > p,
-    .card > .details,
-    .card > .favori {
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
-    }
-
     .card > h3 {
-        margin-top: 1.5rem;
-    }
-
-    .card > .favori {
+        margin: 1.5rem;
         margin-bottom: 1.5rem;
+        color: #2c3e50;
+        font-size: 1.5rem;
+        font-weight: bold;
     }
 
     .card:hover {
         transform: translateY(-4px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .card h3 {
-        color: #2c3e50;
-        margin-bottom: 0.5rem;
-        font-size: 1.5rem;
-    }
-
-    .adresse {
-        color: #666;
-        margin-bottom: 1rem;
-        font-size: 0.95rem;
-    }
-
-    .details {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .details p {
-        margin: 0;
-        font-size: 0.9rem;
-    }
-
-    .favori {
-        display: inline-block;
-        background-color: #ffd700;
-        color: #333;
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: bold;
     }
 </style>
