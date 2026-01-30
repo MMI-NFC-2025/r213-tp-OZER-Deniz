@@ -1,10 +1,14 @@
 ---
-import PbImage from './PbImage.astro';
+import PbImage from "./PbImage.astro";
 const { offre } = Astro.props;
 ---
 
 <div class="card">
-    {offre.Images?.[0] && <PbImage record={offre} recordImage={offre.Images[0]} />}
+    {
+        offre.Images?.[0] && (
+            <PbImage record={offre} recordImage={offre.Images[0]} />
+        )
+    }
     <h3>{offre.Nom}</h3>
 </div>
 
